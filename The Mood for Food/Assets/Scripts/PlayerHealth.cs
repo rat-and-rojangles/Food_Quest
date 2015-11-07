@@ -27,6 +27,10 @@ public class PlayerHealth : MonoBehaviour
 		healthScale = healthBar.transform.localScale;
 	}
 
+	private void bindLocationToPlayer(){
+		
+	}
+
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
@@ -63,8 +67,6 @@ public class PlayerHealth : MonoBehaviour
 					// ... disable user Player Control script
 					GetComponent<PlayerControl>().enabled = false;
 
-					// ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
-					GetComponentInChildren<Gun>().enabled = false;
 
 					// ... Trigger the 'Die' animation state
 					anim.SetTrigger("Die");
