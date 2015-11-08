@@ -45,22 +45,35 @@ namespace UnityStandardAssets._2D
 
         // Refactor these out probably...
 		// avocado uses these too
-        public void PizzaEffect(float newForce)
+        public void PizzaEffect()
         {
-            m_JumpForce = newForce;
+			m_JumpForce = 400;
+			m_MaxSpeed = 6;
             //Invoke("EndPizzaEffect", time);
         }
 
         private void EndPizzaEffect()
         {
             m_JumpForce = defaultJumpForce;
+			m_MaxSpeed = defaultMaxSpeed;
         }
 
-        public void CarrotEffect(float newScale)
+		public void AvocadoEffect()
+		{
+			m_JumpForce = 950;
+			//Invoke("EndPizzaEffect", time);
+		}
+		
+		private void EndAvocadoEffect()
+		{
+			m_JumpForce = defaultJumpForce;
+		}
+
+        public void CarrotEffect()
         {
             foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("shadow"))
             {
-                fooObj.transform.localScale = new Vector3(newScale, newScale, 1.0f);
+				fooObj.transform.localScale = new Vector3(600, 600, 1.0f);
             }
             //Invoke("EndCarrotEffect", time);
         }
@@ -92,9 +105,9 @@ namespace UnityStandardAssets._2D
             }
         }
 
-        public void TriggerAccelEffect(float speed)
+        public void TriggerAccelEffect()
         {
-            m_MaxSpeed = speed;
+			m_MaxSpeed = 15;
             //Invoke("EndAccelEffect", time);
         }
 
@@ -108,6 +121,7 @@ namespace UnityStandardAssets._2D
 			EndCarrotEffect ();
 			EndPizzaEffect ();
 			EndSteakEffect ();
+			EndAvocadoEffect ();
 		}
 
 		private void UnhighlightAll(){
@@ -143,21 +157,23 @@ namespace UnityStandardAssets._2D
 				currentPower = 5;
 			}
 
+			//Debug.Log (hasCarrot);
+
 			// if power changed
 			if (previousPower != currentPower) {
 				EndAllEffects();
 				UnhighlightAll();
 
 				if(currentPower == 1){
-					PizzaEffect(600);
+					PizzaEffect();
 					HighlightByTag("PizzaSlot");
 				}
 				else if(currentPower == 2){
-					PizzaEffect(950);
+					AvocadoEffect();
 					HighlightByTag("AvocadoSlot");
 				}
 				else if(currentPower == 3){
-					TriggerAccelEffect(15);
+					TriggerAccelEffect();
 					HighlightByTag("BananaSlot");
 				}
 				else if(currentPower == 4){
@@ -165,7 +181,7 @@ namespace UnityStandardAssets._2D
 					HighlightByTag("SteakSlot");
 				}
 				else if(currentPower == 5){
-					CarrotEffect(600);
+					CarrotEffect();
 					HighlightByTag("CarrotSlot");
 				}
 			}

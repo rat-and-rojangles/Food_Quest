@@ -33,7 +33,7 @@ public class pizzaEffect : MonoBehaviour {
 	void disappear(){
 		gameObject.GetComponent<Renderer>().enabled = false;
 		activeInWorld = false;
-		pc.hasCarrot = true;
+		pc.hasPizza = true;
 		GameObject.FindGameObjectWithTag ("PizzaSlot").GetComponent<GrayToggle> ().GrayToColor ();
 	}
 
