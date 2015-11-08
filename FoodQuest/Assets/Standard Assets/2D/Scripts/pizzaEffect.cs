@@ -16,9 +16,10 @@ public class pizzaEffect : MonoBehaviour {
     {
         if (other.gameObject.name == "CharacterRobotBoy") {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
+            other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             // put in inventory
             TriggerEffect();
-            Destroy(gameObject);
+            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 
