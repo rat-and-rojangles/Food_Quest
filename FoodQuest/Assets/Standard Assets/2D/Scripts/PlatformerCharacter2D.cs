@@ -6,6 +6,8 @@ namespace UnityStandardAssets._2D
     public class PlatformerCharacter2D : MonoBehaviour
     {
         [SerializeField] public float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
+        [SerializeField]
+        public float defaultMaxSpeed;
         [SerializeField] public float defaultJumpForce;
         [SerializeField] public float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -21,6 +23,48 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
+        // Refactor these out probably...
+        public void PizzaEffect(float newForce, float time)
+        {
+            m_JumpForce = newForce;
+            Invoke("EndPizzaEffect", time);
+        }
+
+        private void EndPizzaEffect()
+        {
+            m_JumpForce = defaultJumpForce;
+        }
+
+        public void SteakEffect(float time)
+        {
+            // should save these and reuse it rather then recalculating each time. But this is a hackathon.
+            foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("heavyCrate"))
+            {
+                fooObj.GetComponent<Rigidbody2D>().isKinematic = false;
+            }
+            Invoke("EndSteakEffect", time);
+        }
+
+        private void EndSteakEffect()
+        {
+            foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("heavyCrate"))
+            {
+                //TODO: They will stop moving even if in mid-fall... fix later.
+                fooObj.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
+        }
+
+        public void TriggerAccelEffect(float speed, float time)
+        {
+            m_MaxSpeed = speed;
+            Invoke("EndAccelEffect", time);
+        }
+
+        private void EndAccelEffect()
+        {
+            m_MaxSpeed = defaultMaxSpeed;
+        }
+
         private void Awake()
         {
             // Setting up references.
@@ -30,6 +74,7 @@ namespace UnityStandardAssets._2D
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
             defaultJumpForce = m_JumpForce;
+            defaultMaxSpeed = m_MaxSpeed;
         }
 
 

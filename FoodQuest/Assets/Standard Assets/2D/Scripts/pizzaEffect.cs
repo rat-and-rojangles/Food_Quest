@@ -16,25 +16,8 @@ public class pizzaEffect : MonoBehaviour {
     {
         if (other.gameObject.name == "CharacterRobotBoy") {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
-            // put in inventory
-            TriggerEffect();
+            pc.PizzaEffect(m_newJumpForce, m_EffectTime);
             Destroy(gameObject);
         }
     }
-
-    void TriggerEffect()
-    {
-        pc.m_JumpForce = m_newJumpForce;
-        Invoke("EndEffect", m_EffectTime);
-    }
-
-    void EndEffect()
-    {
-        pc.m_JumpForce = pc.defaultJumpForce;
-    }
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

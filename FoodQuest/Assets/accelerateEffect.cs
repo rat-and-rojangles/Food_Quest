@@ -5,8 +5,10 @@ using UnityStandardAssets._2D;
 public class accelerateEffect : MonoBehaviour {
 
     public float m_NewMaxSpeed = 15f;
-	// Use this for initialization
-	void Start () {
+    public float m_EffectTime = 30.0f;
+    private PlatformerCharacter2D pc;
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -14,13 +16,14 @@ public class accelerateEffect : MonoBehaviour {
     {
         if(other.gameObject.name == "CharacterRobotBoy")
         {
-            other.gameObject.GetComponent<PlatformerCharacter2D>().m_MaxSpeed = m_NewMaxSpeed;
+            pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
+            pc.TriggerAccelEffect(m_NewMaxSpeed, m_EffectTime);
             Destroy(gameObject);
         }
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 	
 	}
 }

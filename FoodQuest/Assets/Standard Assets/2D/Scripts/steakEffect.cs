@@ -19,28 +19,8 @@ public class steakEffect : MonoBehaviour
         if (other.gameObject.name == "CharacterRobotBoy")
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
-            // put in inventory
-            TriggerEffect();
+            pc.SteakEffect(m_EffectTime);
             Destroy(gameObject);
-        }
-    }
-
-    void TriggerEffect()
-    {
-        // should save these and reuse it rather then recalculating each time. But this is a hackathon.
-        foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("heavyCrate"))
-        {
-            fooObj.GetComponent<Rigidbody2D>().isKinematic = false;
-        }
-        Invoke("EndEffect", m_EffectTime);
-    }
-
-    void EndEffect()
-    {
-        foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("heavyCrate"))
-        {
-            //TODO: They will stop moving even if in mid-fall... fix later.
-            fooObj.GetComponent<Rigidbody2D>().isKinematic = true;
         }
     }
 }
