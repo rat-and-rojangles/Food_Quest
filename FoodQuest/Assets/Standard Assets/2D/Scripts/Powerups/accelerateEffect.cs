@@ -11,6 +11,8 @@ public class accelerateEffect : MonoBehaviour
 
     public bool toggleGUI = false;
 
+	private bool activeInWorld = true;
+
     // Use this for initialization
     void Start()
     {
@@ -19,16 +21,23 @@ public class accelerateEffect : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "CharacterRobotBoy")
+		if ((other.gameObject.name == "CharacterRobotBoy") && (activeInWorld))
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             pc.TriggerAccelEffect(m_NewMaxSpeed, m_EffectTime);
-            gameObject.GetComponent<Renderer>().enabled = false;
+			disappear();
 
             StartCoroutine("wait");
         }
     }
+
+	void disappear(){
+		gameObject.GetComponent<Renderer>().enabled = false;
+		activeInWorld = false;
+		pc.hasBanana = true;
+	}
+
 
     IEnumerator wait()
     {
@@ -39,7 +48,7 @@ public class accelerateEffect : MonoBehaviour
 
     void OnGUI()
     {
-        if (toggleGUI == true)
+		if (toggleGUI == true)
             GUI.Box(new Rect(10, 300, 800, 50), "Bananas provide carbohydrate in the form of quick-releasing sugars which your body can use for energy.");
             GUI.skin.box.normal.textColor = Color.white;
     }

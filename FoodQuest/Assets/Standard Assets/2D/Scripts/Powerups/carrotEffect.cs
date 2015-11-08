@@ -9,6 +9,10 @@ public class carrotEffect : MonoBehaviour
     [SerializeField]
     public float m_EffectTime = 20.0f;
 
+	public bool toggleGUI = false;
+
+	private bool activeInWorld = true;
+
     private PlatformerCharacter2D pc;
     // Use this for initialization
     void Start()
@@ -18,12 +22,34 @@ public class carrotEffect : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "CharacterRobotBoy")
+		if ((other.gameObject.name == "CharacterRobotBoy") && (activeInWorld))
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             pc.CarrotEffect(m_newScale, m_EffectTime);
-            gameObject.GetComponent<Renderer>().enabled = false;
+			disappear();
+
+			StartCoroutine("wait");
         }
     }
+
+	IEnumerator wait()
+	{
+		toggleGUI = true;
+		yield return new WaitForSeconds(3);
+		toggleGUI = false;
+	}
+
+	void disappear(){
+		gameObject.GetComponent<Renderer>().enabled = false;
+		activeInWorld = false;
+		pc.hasCarrot = true;
+	}
+
+	void OnGUI()
+	{
+		if (toggleGUI == true)
+			GUI.Box(new Rect(10, 300, 800, 50), "carrots are marginally healthier than the combination of cocaine and taco bell.");
+		GUI.skin.box.normal.textColor = Color.white;
+	}
 }

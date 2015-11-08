@@ -8,6 +8,8 @@ public class pizzaEffect : MonoBehaviour {
 
     public bool toggleGUI = false;
 
+	private bool activeInWorld = true;
+
     private PlatformerCharacter2D pc;
     // Use this for initialization
     void Start () {
@@ -20,11 +22,17 @@ public class pizzaEffect : MonoBehaviour {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             pc.PizzaEffect(m_newJumpForce, m_EffectTime);
-            gameObject.GetComponent<Renderer>().enabled = false;
+			disappear();
 
             StartCoroutine("wait");
         }
     }
+
+	void disappear(){
+		gameObject.GetComponent<Renderer>().enabled = false;
+		activeInWorld = false;
+		pc.hasCarrot = true;
+	}
 
     IEnumerator wait()
     {

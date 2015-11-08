@@ -29,7 +29,22 @@ namespace UnityStandardAssets._2D
 
 		public IPowerup currentPowerup = null;
 
+		
+		public bool hasPizza = false;
+		public bool hasAvocado = false;
+		public bool hasBanana = false;
+		public bool hasSteak = false;
+		public bool hasCarrot = false;
+
+		private int currentPower = 0;
+		// 1 - pizza
+		// 2 - avocado
+		// 3 - banana
+		// 4 - steak
+		// 5 - carrot (consider glowing eyes effect)
+
         // Refactor these out probably...
+		// avocado uses these too
         public void PizzaEffect(float newForce, float time)
         {
             m_JumpForce = newForce;
@@ -88,6 +103,39 @@ namespace UnityStandardAssets._2D
             m_MaxSpeed = defaultMaxSpeed;
         }
 
+		private void EndAllEffects(){
+			EndAccelEffect ();
+			EndCarrotEffect ();
+			EndPizzaEffect ();
+			EndSteakEffect ();
+		}
+
+		private void checkKeysForPower(){
+			int previousPower = currentPower;
+
+			if(Input.GetKeyDown(KeyCode.Alpha1) && hasPizza){
+				currentPower = 1;
+			}
+			else if(Input.GetKeyDown(KeyCode.Alpha2) && hasAvocado){
+				currentPower = 2;
+			}
+			else if(Input.GetKeyDown(KeyCode.Alpha3) && hasBanana){
+				currentPower = 3;
+			}
+			else if(Input.GetKeyDown(KeyCode.Alpha4) && hasSteak){
+				currentPower = 4;
+			}
+			else if(Input.GetKeyDown(KeyCode.Alpha5) && hasCarrot){
+				currentPower = 5;
+			}
+
+			// if power changed
+			//if (previousPower != currentPower) {
+			//	EndAllEffects();
+			//}
+		}
+
+
         private void Awake()
         {
             // Setting up references.
@@ -101,8 +149,11 @@ namespace UnityStandardAssets._2D
         }
 
 
-        private void FixedUpdate()
-        {
+        private void FixedUpdate(){
+
+			checkKeysForPower ();
+			//Debug.Log (currentPower);
+
             m_Grounded = false;
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground

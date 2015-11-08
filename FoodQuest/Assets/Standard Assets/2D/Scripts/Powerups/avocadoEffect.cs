@@ -5,11 +5,13 @@ using UnityStandardAssets._2D;
 public class avocadoEffect : MonoBehaviour
 {
     [SerializeField]
-    public float m_newJumpForce = 600f;
+    public float m_newJumpForce = 950f;
     [SerializeField]
-    public float m_EffectTime = 30.0f;
+    public float m_EffectTime = 5.0f;
 
     public bool toggleGUI = false;
+
+	private bool activeInWorld = true;
 
     private PlatformerCharacter2D pc;
     // Use this for initialization
@@ -20,16 +22,22 @@ public class avocadoEffect : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "CharacterRobotBoy")
+		if ((other.gameObject.name == "CharacterRobotBoy") && (activeInWorld))
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             pc.PizzaEffect(m_newJumpForce, m_EffectTime);
-            gameObject.GetComponent<Renderer>().enabled = false;
+			disappear();
 
             StartCoroutine("wait");
         }
     }
+
+	void disappear(){
+		gameObject.GetComponent<Renderer>().enabled = false;
+		activeInWorld = false;
+		pc.hasAvocado = true;
+	}
 
     IEnumerator wait()
     {
@@ -40,7 +48,7 @@ public class avocadoEffect : MonoBehaviour
 
     void OnGUI()
     {
-        if (toggleGUI == true)
+		if (toggleGUI == true)
 
             GUI.Box(new Rect(10, 300, 800, 50), "Avocado is loaded with heart-healthy monounsaturated fatty acids.");
         GUI.skin.box.normal.textColor = Color.white;
