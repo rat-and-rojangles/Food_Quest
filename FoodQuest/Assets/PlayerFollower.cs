@@ -11,12 +11,15 @@ public class PlayerFollower : MonoBehaviour {
     public Vector2 minXAndY;        // The minimum x and y coordinates the camera can have.
 
     public bool tracksPlayer = true;
+    public bool invisiblePastMax = false;
+    private bool wasInvisible = false;
 
     private Transform player;       // Reference to the player's transform.
 
-
+    Renderer rend;
     void Awake()
     {
+        rend = this.GetComponent<Renderer>();
         // Setting up the reference.
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -67,5 +70,16 @@ public class PlayerFollower : MonoBehaviour {
 
         // Set the camera's position to the target position with the same z component.
         transform.position = new Vector3(targetX, targetY, transform.position.z);
+
+        if(invisiblePastMax && (targetX > maxXAndY.x || targetY > maxXAndY.y || targetX < minXAndY.x || targetY < minXAndY.y))
+        {
+            rend.enabled = false;
+            wasInvisible = true;
+        }
+        else if(wasInvisible) 
+        {
+            wasInvisible = false;
+            rend.enabled = true;
+        }
     }
 }
