@@ -13,6 +13,9 @@ public class avocadoEffect : MonoBehaviour
 
 	private bool activeInWorld = true;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
     private PlatformerCharacter2D pc;
     // Use this for initialization
     void Start()
@@ -38,7 +41,9 @@ public class avocadoEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasAvocado = true;
 		GameObject.FindGameObjectWithTag ("AvocadoSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
     IEnumerator wait()
     {

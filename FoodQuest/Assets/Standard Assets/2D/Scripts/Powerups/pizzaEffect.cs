@@ -9,7 +9,8 @@ public class pizzaEffect : MonoBehaviour {
     public bool toggleGUI = false;
 
 	private bool activeInWorld = true;
-
+    public AudioSource source;
+    public AudioClip bombCollect;
 
     private PlatformerCharacter2D pc;
     // Use this for initialization
@@ -35,7 +36,9 @@ public class pizzaEffect : MonoBehaviour {
 		activeInWorld = false;
 		pc.hasPizza = true;
 		GameObject.FindGameObjectWithTag ("PizzaSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
     IEnumerator wait()
     {
@@ -43,6 +46,7 @@ public class pizzaEffect : MonoBehaviour {
         yield return new WaitForSeconds(3);
         toggleGUI = false;
     }
+
 
     void OnGUI()
     {

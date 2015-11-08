@@ -12,6 +12,9 @@ public class steakEffect : MonoBehaviour//, IPowerup
 
     private PlatformerCharacter2D pc;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -32,7 +35,9 @@ public class steakEffect : MonoBehaviour//, IPowerup
 		activeInWorld = false;
 		pc.hasSteak = true;
 		GameObject.FindGameObjectWithTag ("SteakSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        aud.Play();
+    }
 	void respawn(){
 		gameObject.GetComponent<Renderer>().enabled = true;
 		activeInWorld = true;

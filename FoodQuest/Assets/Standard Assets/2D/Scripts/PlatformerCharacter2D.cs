@@ -27,6 +27,7 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
+        
 		public IPowerup currentPowerup = null;
 
 		
@@ -37,18 +38,19 @@ namespace UnityStandardAssets._2D
 		public bool hasCarrot = false;
 
 		private int currentPower = 0;
-		// 1 - pizza
-		// 2 - avocado
-		// 3 - banana
-		// 4 - steak
-		// 5 - carrot (consider glowing eyes effect)
+        // 1 - pizza
+        // 2 - avocado
+        // 3 - banana
+        // 4 - steak
+        // 5 - carrot (consider glowing eyes effect)
 
         // Refactor these out probably...
-		// avocado uses these too
+        // avocado uses these too
         public void PizzaEffect()
         {
 			m_JumpForce = 400;
 			m_MaxSpeed = 6;
+            
             //Invoke("EndPizzaEffect", time);
         }
 

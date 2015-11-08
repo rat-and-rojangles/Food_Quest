@@ -13,6 +13,9 @@ public class accelerateEffect : MonoBehaviour
 
 	private bool activeInWorld = true;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
     // Use this for initialization
     void Start()
     {
@@ -37,7 +40,9 @@ public class accelerateEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasBanana = true;
 		GameObject.FindGameObjectWithTag ("BananaSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
 
     IEnumerator wait()

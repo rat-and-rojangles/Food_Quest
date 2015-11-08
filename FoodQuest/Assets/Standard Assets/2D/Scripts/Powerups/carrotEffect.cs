@@ -13,6 +13,9 @@ public class carrotEffect : MonoBehaviour
 
 	private bool activeInWorld = true;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
     private PlatformerCharacter2D pc;
     // Use this for initialization
     void Start()
@@ -45,7 +48,9 @@ public class carrotEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasCarrot = true;
 		GameObject.FindGameObjectWithTag ("CarrotSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
 	void OnGUI()
 	{
