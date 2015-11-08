@@ -27,28 +27,32 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
+        
 		public IPowerup currentPowerup = null;
 
-		
-		public bool hasPizza = false;
+        public AudioSource source;
+        public AudioClip bombCollect;
+
+        public bool hasPizza = false;
 		public bool hasAvocado = false;
 		public bool hasBanana = false;
 		public bool hasSteak = false;
 		public bool hasCarrot = false;
 
 		private int currentPower = 0;
-		// 1 - pizza
-		// 2 - avocado
-		// 3 - banana
-		// 4 - steak
-		// 5 - carrot (consider glowing eyes effect)
+        // 1 - pizza
+        // 2 - avocado
+        // 3 - banana
+        // 4 - steak
+        // 5 - carrot (consider glowing eyes effect)
 
         // Refactor these out probably...
-		// avocado uses these too
+        // avocado uses these too
         public void PizzaEffect()
         {
 			m_JumpForce = 400;
 			m_MaxSpeed = 6;
+            
             //Invoke("EndPizzaEffect", time);
         }
 
@@ -270,6 +274,8 @@ namespace UnityStandardAssets._2D
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                AudioSource aud = GameObject.FindGameObjectWithTag("EditorOnly").GetComponent<AudioSource>();
+                aud.Play();
             }
         }
 

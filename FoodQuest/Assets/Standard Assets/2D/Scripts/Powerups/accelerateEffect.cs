@@ -13,6 +13,9 @@ public class accelerateEffect : MonoBehaviour
 
 	private bool activeInWorld = true;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
     // Use this for initialization
     void Start()
     {
@@ -37,7 +40,9 @@ public class accelerateEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasBanana = true;
 		GameObject.FindGameObjectWithTag ("BananaSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
 
     IEnumerator wait()
@@ -50,7 +55,7 @@ public class accelerateEffect : MonoBehaviour
     void OnGUI()
     {
 		if (toggleGUI == true)
-            GUI.Box(new Rect(10, 300, 800, 50), "Bananas provide carbohydrate in the form of quick-releasing sugars which your body can use for energy.");
+            GUI.Box(new Rect(10, 10, 800, 50), "Bananas provide carbohydrate in the form of quick-releasing sugars which your body can use for energy.");
             GUI.skin.box.normal.textColor = Color.white;
     }
 

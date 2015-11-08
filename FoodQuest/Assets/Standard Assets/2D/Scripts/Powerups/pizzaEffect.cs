@@ -9,7 +9,8 @@ public class pizzaEffect : MonoBehaviour {
     public bool toggleGUI = false;
 
 	private bool activeInWorld = true;
-
+    public AudioSource source;
+    public AudioClip bombCollect;
 
     private PlatformerCharacter2D pc;
     // Use this for initialization
@@ -35,7 +36,9 @@ public class pizzaEffect : MonoBehaviour {
 		activeInWorld = false;
 		pc.hasPizza = true;
 		GameObject.FindGameObjectWithTag ("PizzaSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
     IEnumerator wait()
     {
@@ -44,11 +47,12 @@ public class pizzaEffect : MonoBehaviour {
         toggleGUI = false;
     }
 
+
     void OnGUI()
     {
         if (toggleGUI == true)
 
-            GUI.Box(new Rect(10, 300, 800, 50), "The cheese on pizza is high in saturated fat, which increases your risk for high cholesterol and heart disease.");
+            GUI.Box(new Rect(10, 10, 800, 50), "The cheese on pizza is high in saturated fat, which increases your risk for high cholesterol and heart disease.");
             GUI.skin.box.normal.textColor = Color.white;
     }
 

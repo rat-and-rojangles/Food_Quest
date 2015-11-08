@@ -12,6 +12,9 @@ public class steakEffect : MonoBehaviour//, IPowerup
 
     private PlatformerCharacter2D pc;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -32,7 +35,9 @@ public class steakEffect : MonoBehaviour//, IPowerup
 		activeInWorld = false;
 		pc.hasSteak = true;
 		GameObject.FindGameObjectWithTag ("SteakSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
+        aud.Play();
+    }
 	void respawn(){
 		gameObject.GetComponent<Renderer>().enabled = true;
 		activeInWorld = true;
@@ -54,7 +59,7 @@ public class steakEffect : MonoBehaviour//, IPowerup
     {
 		if (toggleGUI == true)
 
-            GUI.Box(new Rect(10, 300, 800, 50), "Red meat provides protein, which helps build bones and muscle strength.");
+            GUI.Box(new Rect(10, 10, 800, 50), "Red meat provides protein, which helps build bones and muscle strength.");
             GUI.skin.box.normal.textColor = Color.white;
     }
 

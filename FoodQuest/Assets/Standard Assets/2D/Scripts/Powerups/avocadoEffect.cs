@@ -13,6 +13,9 @@ public class avocadoEffect : MonoBehaviour
 
 	private bool activeInWorld = true;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
     private PlatformerCharacter2D pc;
     // Use this for initialization
     void Start()
@@ -38,7 +41,9 @@ public class avocadoEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasAvocado = true;
 		GameObject.FindGameObjectWithTag ("AvocadoSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
     IEnumerator wait()
     {
@@ -51,7 +56,7 @@ public class avocadoEffect : MonoBehaviour
     {
 		if (toggleGUI == true)
 
-            GUI.Box(new Rect(10, 300, 800, 50), "Avocado is loaded with heart-healthy monounsaturated fatty acids.");
+            GUI.Box(new Rect(10, 10, 800, 50), "Avocado is loaded with heart-healthy monounsaturated fatty acids.");
         GUI.skin.box.normal.textColor = Color.white;
     }
 

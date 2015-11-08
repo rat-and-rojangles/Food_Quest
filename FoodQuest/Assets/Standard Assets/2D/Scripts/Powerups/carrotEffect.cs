@@ -13,6 +13,9 @@ public class carrotEffect : MonoBehaviour
 
 	private bool activeInWorld = true;
 
+    public AudioSource source;
+    public AudioClip bombCollect;
+
     private PlatformerCharacter2D pc;
     // Use this for initialization
     void Start()
@@ -45,12 +48,14 @@ public class carrotEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasCarrot = true;
 		GameObject.FindGameObjectWithTag ("CarrotSlot").GetComponent<GrayToggle> ().GrayToColor ();
-	}
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
+        aud.Play();
+    }
 
 	void OnGUI()
 	{
 		if (toggleGUI == true)
-			GUI.Box(new Rect(10, 300, 800, 50), "Carrots are very high in vitamin A, an essential nutrient for good vision.");
+			GUI.Box(new Rect(10, 10, 800, 50), "Carrots are very high in vitamin A, an essential nutrient for good vision.");
 		GUI.skin.box.normal.textColor = Color.white;
 	}
 }
