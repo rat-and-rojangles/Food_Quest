@@ -3,15 +3,15 @@ using System.Collections;
 
 public class PressSpaceToPlay : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
+	private bool movingOn = false;
+
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			Application.LoadLevel ("Area");
+			movingOn=true;
+		}
+		if (movingOn && gameObject.GetComponent<FadeToBlack> ().fullyFaded) {
+			Application.LoadLevel("Area");
 		}
 	}
 }
