@@ -36,7 +36,7 @@ public class pizzaEffect : MonoBehaviour {
 		activeInWorld = false;
 		pc.hasPizza = true;
 		GameObject.FindGameObjectWithTag ("PizzaSlot").GetComponent<GrayToggle> ().GrayToColor ();
-        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
         aud.Play();
     }
 

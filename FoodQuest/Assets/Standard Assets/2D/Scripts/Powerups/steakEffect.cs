@@ -35,7 +35,7 @@ public class steakEffect : MonoBehaviour//, IPowerup
 		activeInWorld = false;
 		pc.hasSteak = true;
 		GameObject.FindGameObjectWithTag ("SteakSlot").GetComponent<GrayToggle> ().GrayToColor ();
-        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
         aud.Play();
     }
 	void respawn(){

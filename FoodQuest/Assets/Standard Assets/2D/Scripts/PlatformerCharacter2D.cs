@@ -30,8 +30,10 @@ namespace UnityStandardAssets._2D
         
 		public IPowerup currentPowerup = null;
 
-		
-		public bool hasPizza = false;
+        public AudioSource source;
+        public AudioClip bombCollect;
+
+        public bool hasPizza = false;
 		public bool hasAvocado = false;
 		public bool hasBanana = false;
 		public bool hasSteak = false;
@@ -272,6 +274,8 @@ namespace UnityStandardAssets._2D
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                AudioSource aud = GameObject.FindGameObjectWithTag("EditorOnly").GetComponent<AudioSource>();
+                aud.Play();
             }
         }
 

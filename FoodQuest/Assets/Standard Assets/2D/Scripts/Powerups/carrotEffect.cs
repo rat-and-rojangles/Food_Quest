@@ -48,7 +48,7 @@ public class carrotEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasCarrot = true;
 		GameObject.FindGameObjectWithTag ("CarrotSlot").GetComponent<GrayToggle> ().GrayToColor ();
-        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
         aud.Play();
     }
 

@@ -40,7 +40,7 @@ public class accelerateEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasBanana = true;
 		GameObject.FindGameObjectWithTag ("BananaSlot").GetComponent<GrayToggle> ().GrayToColor ();
-        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
         aud.Play();
     }
 

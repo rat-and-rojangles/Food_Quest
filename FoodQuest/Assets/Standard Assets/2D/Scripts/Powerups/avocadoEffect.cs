@@ -41,7 +41,7 @@ public class avocadoEffect : MonoBehaviour
 		activeInWorld = false;
 		pc.hasAvocado = true;
 		GameObject.FindGameObjectWithTag ("AvocadoSlot").GetComponent<GrayToggle> ().GrayToColor ();
-        AudioSource aud = GameObject.FindGameObjectWithTag("PizzaSlot").GetComponent<AudioSource>();
+        AudioSource aud = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
         aud.Play();
     }
 
