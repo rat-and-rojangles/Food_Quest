@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FallAfterTime : MonoBehaviour {
-    [SerializeField] public float m_EffectTime = 3.0f;
+public class FallAfterTime : MonoBehaviour
+{
+    [SerializeField]
+    public float m_EffectTime = 3.0f;
 
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start()
+    {
+
+    }
     private bool falling = false;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!falling) {
+        if (!falling)
+        {
             if (other.gameObject.name == "CharacterRobotBoy")
             {
                 falling = true;
