@@ -13,6 +13,7 @@ namespace UnityStandardAssets._2D
         [SerializeField] public float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
         [SerializeField] public List<GameObject> usedItems;
         [SerializeField] public GameObject m_LastCheckpoint = null;
+
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
@@ -38,6 +39,23 @@ namespace UnityStandardAssets._2D
         private void EndPizzaEffect()
         {
             m_JumpForce = defaultJumpForce;
+        }
+
+        public void CarrotEffect(float newScale, float time)
+        {
+            foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("shadow"))
+            {
+                fooObj.transform.localScale = new Vector3(newScale, newScale, 1.0f);
+            }
+            Invoke("EndCarrotEffect", time);
+        }
+
+        private void EndCarrotEffect()
+        {
+            foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("shadow"))
+            {
+                fooObj.transform.localScale = new Vector3(4.0f, 4.0f, 1.0f);
+            }
         }
 
         public void SteakEffect(float time)

@@ -22,7 +22,8 @@ public class FallOutOfBounds : MonoBehaviour {
         }
         else
         {
-            other.gameObject.GetComponent<Renderer>().enabled = false;
+            Destroy(other.gameObject);
+            //other.gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 	
