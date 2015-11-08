@@ -51,7 +51,7 @@ public class avocadoEffect : MonoBehaviour
     {
 		if (toggleGUI == true)
 
-            GUI.Box(new Rect(10, 300, 800, 50), "Avocado is loaded with heart-healthy monounsaturated fatty acids.");
+            GUI.Box(new Rect(10, 10, 800, 50), "Avocado is loaded with heart-healthy monounsaturated fatty acids.");
         GUI.skin.box.normal.textColor = Color.white;
     }
 

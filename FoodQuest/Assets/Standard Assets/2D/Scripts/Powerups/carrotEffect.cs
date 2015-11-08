@@ -50,7 +50,7 @@ public class carrotEffect : MonoBehaviour
 	void OnGUI()
 	{
 		if (toggleGUI == true)
-			GUI.Box(new Rect(10, 300, 800, 50), "Carrots are very high in vitamin A, an essential nutrient for good vision.");
+			GUI.Box(new Rect(10, 10, 800, 50), "Carrots are very high in vitamin A, an essential nutrient for good vision.");
 		GUI.skin.box.normal.textColor = Color.white;
 	}
 }
