@@ -77,7 +77,7 @@ namespace UnityStandardAssets._2D
         {
             foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("shadow"))
             {
-				fooObj.transform.localScale = new Vector3(600, 600, 1.0f);
+				fooObj.transform.localScale = new Vector3(9.0f, 9.0f, 1.0f);
             }
             //Invoke("EndCarrotEffect", time);
         }
@@ -86,7 +86,7 @@ namespace UnityStandardAssets._2D
         {
             foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("shadow"))
             {
-                fooObj.transform.localScale = new Vector3(4.0f, 4.0f, 1.0f);
+                fooObj.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
             }
         }
 
@@ -217,7 +217,7 @@ namespace UnityStandardAssets._2D
             Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].gameObject != gameObject)
+                if (colliders[i].gameObject != gameObject && colliders[i].gameObject.tag != "invisibleCollider")
                     m_Grounded = true;
             }
             m_Anim.SetBool("Ground", m_Grounded);
