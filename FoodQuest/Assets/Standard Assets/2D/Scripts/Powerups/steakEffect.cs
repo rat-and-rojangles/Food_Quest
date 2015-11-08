@@ -11,11 +11,7 @@ public class steakEffect : MonoBehaviour//, IPowerup
     public bool toggleGUI = false;
 
     private PlatformerCharacter2D pc;
-    // Use this for initialization
-    void Start()
-    {
-		
-    }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,21 +19,13 @@ public class steakEffect : MonoBehaviour//, IPowerup
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
-			applyPower();
             gameObject.GetComponent<Renderer>().enabled = false;
 			disappear();
 
             StartCoroutine("wait");
         }
     }
-//<<<<<<< HEAD:FoodQuest/Assets/Standard Assets/2D/Scripts/Powerups/steakEffect.cs
 
-	void applyPower(){
-		pc.SteakEffect(m_EffectTime);
-	}
-
-	//void addToInventory();
-	//void removeFromInventory();
 
 	void disappear(){
 		gameObject.GetComponent<Renderer>().enabled = false;
@@ -54,8 +42,7 @@ public class steakEffect : MonoBehaviour//, IPowerup
 	bool inWorld(){
 		return activeInWorld;
 	}
-
-//=======
+	
     IEnumerator wait()
     {
         toggleGUI = true;
@@ -77,4 +64,3 @@ public class steakEffect : MonoBehaviour//, IPowerup
 
     }
 }
-//>>>>>>> origin/master:FoodQuest/Assets/Standard Assets/2D/Scripts/steakEffect.cs

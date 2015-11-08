@@ -26,7 +26,7 @@ public class avocadoEffect : MonoBehaviour
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
-            pc.PizzaEffect(m_newJumpForce, m_EffectTime);
+            //pc.PizzaEffect(m_newJumpForce, m_EffectTime);
 			disappear();
 
             StartCoroutine("wait");

@@ -26,7 +26,7 @@ public class carrotEffect : MonoBehaviour
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
-            pc.CarrotEffect(m_newScale, m_EffectTime);
+            //pc.CarrotEffect(m_newScale, m_EffectTime);
 			disappear();
 
 			StartCoroutine("wait");

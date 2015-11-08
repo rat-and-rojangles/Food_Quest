@@ -25,7 +25,7 @@ public class accelerateEffect : MonoBehaviour
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
-            pc.TriggerAccelEffect(m_NewMaxSpeed, m_EffectTime);
+            //pc.TriggerAccelEffect(m_NewMaxSpeed, m_EffectTime);
 			disappear();
 
             StartCoroutine("wait");

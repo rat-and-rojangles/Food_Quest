@@ -19,10 +19,10 @@ public class pizzaEffect : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "CharacterRobotBoy") {
+		if ((other.gameObject.name == "CharacterRobotBoy") && (activeInWorld)){
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
-            pc.PizzaEffect(m_newJumpForce, m_EffectTime);
+            //pc.PizzaEffect(m_newJumpForce, m_EffectTime);
 			disappear();
 
 			//pc.TriggerAccelEffect(0, 3);

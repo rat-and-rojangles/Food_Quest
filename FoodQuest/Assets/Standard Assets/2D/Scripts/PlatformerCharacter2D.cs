@@ -45,10 +45,10 @@ namespace UnityStandardAssets._2D
 
         // Refactor these out probably...
 		// avocado uses these too
-        public void PizzaEffect(float newForce, float time)
+        public void PizzaEffect(float newForce)
         {
             m_JumpForce = newForce;
-            Invoke("EndPizzaEffect", time);
+            //Invoke("EndPizzaEffect", time);
         }
 
         private void EndPizzaEffect()
@@ -56,13 +56,13 @@ namespace UnityStandardAssets._2D
             m_JumpForce = defaultJumpForce;
         }
 
-        public void CarrotEffect(float newScale, float time)
+        public void CarrotEffect(float newScale)
         {
             foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("shadow"))
             {
                 fooObj.transform.localScale = new Vector3(newScale, newScale, 1.0f);
             }
-            Invoke("EndCarrotEffect", time);
+            //Invoke("EndCarrotEffect", time);
         }
 
         private void EndCarrotEffect()
@@ -73,14 +73,14 @@ namespace UnityStandardAssets._2D
             }
         }
 
-        public void SteakEffect(float time)
+        public void SteakEffect()
         {
             // should save these and reuse it rather then recalculating each time. But this is a hackathon.
             foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("heavyCrate"))
             {
                 fooObj.GetComponent<Rigidbody2D>().isKinematic = false;
             }
-            Invoke("EndSteakEffect", time);
+            //Invoke("EndSteakEffect", time);
         }
 
         private void EndSteakEffect()
@@ -92,10 +92,10 @@ namespace UnityStandardAssets._2D
             }
         }
 
-        public void TriggerAccelEffect(float speed, float time)
+        public void TriggerAccelEffect(float speed)
         {
             m_MaxSpeed = speed;
-            Invoke("EndAccelEffect", time);
+            //Invoke("EndAccelEffect", time);
         }
 
         private void EndAccelEffect()
@@ -108,6 +108,20 @@ namespace UnityStandardAssets._2D
 			EndCarrotEffect ();
 			EndPizzaEffect ();
 			EndSteakEffect ();
+		}
+
+		private void UnhighlightAll(){
+			foreach (GrayToggle gg in GameObject.FindGameObjectWithTag ("inventory").GetComponentsInChildren<GrayToggle> ()) {
+				gg.Unhighlight();
+			}
+		}
+
+		private void HighlightByTag(String test){
+			foreach (GrayToggle gg in GameObject.FindGameObjectWithTag ("inventory").GetComponentsInChildren<GrayToggle> ()) {
+				if(gg.gameObject.tag.Equals(test)){
+					gg.Highlight();
+				}
+			}
 		}
 
 		private void checkKeysForPower(){
@@ -130,9 +144,31 @@ namespace UnityStandardAssets._2D
 			}
 
 			// if power changed
-			//if (previousPower != currentPower) {
-			//	EndAllEffects();
-			//}
+			if (previousPower != currentPower) {
+				EndAllEffects();
+				UnhighlightAll();
+
+				if(currentPower == 1){
+					PizzaEffect(600);
+					HighlightByTag("PizzaSlot");
+				}
+				else if(currentPower == 2){
+					PizzaEffect(950);
+					HighlightByTag("AvocadoSlot");
+				}
+				else if(currentPower == 3){
+					TriggerAccelEffect(15);
+					HighlightByTag("BananaSlot");
+				}
+				else if(currentPower == 4){
+					SteakEffect();
+					HighlightByTag("SteakSlot");
+				}
+				else if(currentPower == 5){
+					CarrotEffect(600);
+					HighlightByTag("CarrotSlot");
+				}
+			}
 		}
 
 
