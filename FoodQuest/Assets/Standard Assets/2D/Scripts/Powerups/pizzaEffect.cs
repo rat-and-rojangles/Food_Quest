@@ -24,6 +24,7 @@ public class pizzaEffect : MonoBehaviour {
             pc.PizzaEffect(m_newJumpForce, m_EffectTime);
 			disappear();
 
+			//pc.TriggerAccelEffect(0, 3);
             StartCoroutine("wait");
         }
     }
