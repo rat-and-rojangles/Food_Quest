@@ -29,7 +29,8 @@ public class FadeToBlack : MonoBehaviour {
 		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeTexture);
 	}
 
-	void Update(){
+	void LateUpdate(){
+		Debug.Log (alpha);
 		if (alpha >= 1) {
 			fullyFaded = true;
 		}
