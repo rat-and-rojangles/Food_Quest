@@ -5,11 +5,12 @@ public class FallAfterTime : MonoBehaviour
 {
     [SerializeField]
     public float m_EffectTime = 3.0f;
+    public Vector3 initialV;
 
     // Use this for initialization
     void Start()
     {
-
+        initialV = gameObject.transform.position;
     }
     private bool falling = false;
     void OnTriggerEnter2D(Collider2D other)
@@ -20,6 +21,10 @@ public class FallAfterTime : MonoBehaviour
             {
                 falling = true;
                 Invoke("FallEffect", m_EffectTime);
+            }
+            else
+            {
+                gameObject.transform.position = initialV;
             }
         }
     }

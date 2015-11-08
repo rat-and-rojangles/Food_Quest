@@ -14,10 +14,10 @@ public class FallOutOfBounds : MonoBehaviour {
         if(other.gameObject.name=="CharacterRobotBoy")
         {
             other.gameObject.transform.position = other.gameObject.GetComponent<PlatformerCharacter2D>().m_LastCheckpoint.transform.position;
-            foreach(GameObject go in other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems)
+            /*foreach(GameObject go in other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems)
             {
                 go.GetComponent<Renderer>().enabled = true;
-            }
+            }*/
             other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Clear();
         }
         else

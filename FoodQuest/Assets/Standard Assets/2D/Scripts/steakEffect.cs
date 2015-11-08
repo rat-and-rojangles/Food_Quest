@@ -19,8 +19,9 @@ public class steakEffect : MonoBehaviour
         if (other.gameObject.name == "CharacterRobotBoy")
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
+            other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             pc.SteakEffect(m_EffectTime);
-            Destroy(gameObject);
+            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 }

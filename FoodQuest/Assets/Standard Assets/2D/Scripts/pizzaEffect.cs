@@ -16,8 +16,9 @@ public class pizzaEffect : MonoBehaviour {
     {
         if (other.gameObject.name == "CharacterRobotBoy") {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
+            other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             pc.PizzaEffect(m_newJumpForce, m_EffectTime);
-            Destroy(gameObject);
+            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 }

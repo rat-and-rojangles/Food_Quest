@@ -17,8 +17,9 @@ public class accelerateEffect : MonoBehaviour {
         if(other.gameObject.name == "CharacterRobotBoy")
         {
             pc = other.gameObject.GetComponent<PlatformerCharacter2D>();
+            other.gameObject.GetComponent<PlatformerCharacter2D>().usedItems.Add(gameObject);
             pc.TriggerAccelEffect(m_NewMaxSpeed, m_EffectTime);
-            Destroy(gameObject);
+            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 
