@@ -10,6 +10,7 @@ public class pizzaEffect : MonoBehaviour {
 
 	private bool activeInWorld = true;
 
+
     private PlatformerCharacter2D pc;
     // Use this for initialization
     void Start () {
@@ -33,6 +34,7 @@ public class pizzaEffect : MonoBehaviour {
 		gameObject.GetComponent<Renderer>().enabled = false;
 		activeInWorld = false;
 		pc.hasCarrot = true;
+		GameObject.FindGameObjectWithTag ("PizzaSlot").GetComponent<GrayToggle> ().GrayToColor ();
 	}
 
     IEnumerator wait()

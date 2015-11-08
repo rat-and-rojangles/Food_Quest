@@ -43,6 +43,7 @@ public class steakEffect : MonoBehaviour//, IPowerup
 		gameObject.GetComponent<Renderer>().enabled = false;
 		activeInWorld = false;
 		pc.hasSteak = true;
+		GameObject.FindGameObjectWithTag ("SteakSlot").GetComponent<GrayToggle> ().GrayToColor ();
 	}
 	void respawn(){
 		gameObject.GetComponent<Renderer>().enabled = true;

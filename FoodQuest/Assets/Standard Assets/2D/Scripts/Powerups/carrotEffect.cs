@@ -44,6 +44,7 @@ public class carrotEffect : MonoBehaviour
 		gameObject.GetComponent<Renderer>().enabled = false;
 		activeInWorld = false;
 		pc.hasCarrot = true;
+		GameObject.FindGameObjectWithTag ("CarrotSlot").GetComponent<GrayToggle> ().GrayToColor ();
 	}
 
 	void OnGUI()

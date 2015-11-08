@@ -37,6 +37,7 @@ public class avocadoEffect : MonoBehaviour
 		gameObject.GetComponent<Renderer>().enabled = false;
 		activeInWorld = false;
 		pc.hasAvocado = true;
+		GameObject.FindGameObjectWithTag ("AvocadoSlot").GetComponent<GrayToggle> ().GrayToColor ();
 	}
 
     IEnumerator wait()

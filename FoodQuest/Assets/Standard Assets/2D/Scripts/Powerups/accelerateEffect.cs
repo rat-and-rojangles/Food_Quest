@@ -36,6 +36,7 @@ public class accelerateEffect : MonoBehaviour
 		gameObject.GetComponent<Renderer>().enabled = false;
 		activeInWorld = false;
 		pc.hasBanana = true;
+		GameObject.FindGameObjectWithTag ("BananaSlot").GetComponent<GrayToggle> ().GrayToColor ();
 	}
 
 
